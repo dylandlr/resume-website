@@ -7,14 +7,6 @@
 
 This is my personal resume website built with **React** and hosted on **Cloudflare Pages**. It's designed to showcase my skills, projects, and experiences.
 
-## Features
-
-- **Modern UI**: A clean and modern interface to present your professional details.
-- **Responsive Design**: Optimized for both mobile and desktop users.
-- **Custom Animations**: Smooth transitions and effects to enhance user experience.
-- **Dark Mode**: Optional dark mode for night-time viewing.
-- **Fast & Secure**: Deployed using Cloudflare Pages with built-in SSL.
-
 ## Demo
 
 You can check the live version of the site here:
