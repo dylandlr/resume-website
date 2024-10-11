@@ -1,4 +1,4 @@
-# My Resume Website
+# Resume Website
 
 ![React](https://img.shields.io/badge/React-18.2.0-blue)
 ![Cloudflare Pages](https://img.shields.io/badge/Hosted%20on-Cloudflare%20Pages-orange)
