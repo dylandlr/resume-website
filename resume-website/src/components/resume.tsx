@@ -1,5 +1,5 @@
 "use client";
-
+// resume html + tailwindcss
 import { Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
 
 export function Resume() {
