@@ -1,5 +1,4 @@
 import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react'
-import React from "react";
 
 export default function Component() {
   return (
