@@ -19,7 +19,7 @@ This is my personal resume website built with **React** and hosted on **Cloudfla
 
 You can check the live version of the site here:
 
-🔗 **[mydomain.net](https://dylandelarosa.net)**
+🔗 **[dylandelarosa.net](https://dylandelarosa.net)**
 
 ## Setup Instructions
 
