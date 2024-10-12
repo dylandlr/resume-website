@@ -65,8 +65,8 @@ export function Resume() {
                 Texas A&M University, Commerce/College Station, TX
               </h3>
               <p className="text-gray-600 italic">
-                Bachelor&apos;s of Science, Computer Science (Expected
-                Graduation: December 2024)
+                Bachelor&apos;s of Science, Computer Science (Graduation:
+                December 2024)
               </p>
               <ul className="list-disc list-inside mt-2 text-gray-700 space-y-1">
                 <li>
@@ -108,7 +108,7 @@ export function Resume() {
             <div className="mb-4">
               <h3 className="text-xl font-medium text-gray-700">
                 University of Missouri-Kansas City, NSF Research Experience for
-                Undergraduates Program
+                Undergraduates Program (REU)
               </h3>
               <p className="text-gray-600 italic">
                 AI Empowered Cybersecurity Research Fellow
