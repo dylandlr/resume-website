@@ -4,16 +4,18 @@ import { Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
 
 export function Resume() {
   return (
-    <div className="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 py-4 px-4 sm:px-6 lg:px-8">
+      {" "}
+      {/* Light background */}
       <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-        <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-6 sm:p-8">
-          <h1 className="text-3xl sm:text-4xl font-bold">
-            Dylan M. De La Rosa
-          </h1>
-          <p className="text-xl mt-2 text-blue-100">
-            Computer Scientist / Engineer / Entrepreneur / Researcher
+        <header className="bg-gradient-to-r from-blue-700 to-blue-900 text-white p-6 sm:p-6">
+          {" "}
+          {/* Deepened the blue */}
+          <h1 className="text-4xl font-bold">Dylan M. De La Rosa</h1>
+          <p className="text-xl mt-1 text-blue-100">
+            Computer Scientist / Engineer / Researcher
           </p>
-          <div className="mt-4 flex flex-wrap gap-4">
+          <div className="mt-2 flex flex-wrap gap-4">
             <div className="flex items-center text-sm sm:text-base">
               <Mail className="h-5 w-5 mr-2 text-blue-200" />
               <a
@@ -55,154 +57,222 @@ export function Resume() {
           </div>
         </header>
 
-        <main className="p-6 sm:p-8 space-y-8">
+        <main className="p-4 sm:p-6 space-y-6">
+          {/* Section Titles: Color & Font Updates */}
           <section>
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800 border-b pb-2">
+            <h2 className="text-3xl font-semibold mb-4 text-blue-800 border-b-2 border-blue-300 pb-2">
               Education
             </h2>
-            <div className="mb-4">
-              <h3 className="text-xl font-medium text-gray-700">
-                Texas A&M University, Commerce/College Station, TX
+            <div className="mb-2">
+              <h3 className="text-xl font-medium text-gray-800">
+                Texas A&M University, Commerce | College Station, TX
               </h3>
               <p className="text-gray-600 italic">
-                Bachelor&apos;s of Science, Computer Science (Graduation:
-                December 2024)
+                Bachelor&apos;s of Science, Computer Science
               </p>
-              <ul className="list-disc list-inside mt-2 text-gray-700 space-y-1">
-                <li>
-                  GPA: Major: 3.36 | Institution: 3.83 | Cumulative: 3.05 | Fall
-                  &apos;23: 4.0 | Spring &apos;24: 3.66
-                </li>
-                <li>
-                  President&apos;s List (Fall 2023) | Dean&apos;s List (Spring
-                  2024)
-                </li>
-              </ul>
-            </div>
-            <div className="mb-4">
-              <h3 className="text-xl font-medium text-gray-700">
-                Blinn College, Bryan TX
-              </h3>
-              <p className="text-gray-600 italic">
-                Associates of Science, Engineering
+              <p className="text-gray-600">
+                GPA: 3.4 | Graduation: December 2024
               </p>
-            </div>
-            <div>
-              <h3 className="text-xl font-medium text-gray-700">
-                L.C Anderson High School, Austin TX
-              </h3>
-              <p className="text-gray-600 italic">
-                High School Diploma: International Baccalaureate Certificate,
-                Electronics Endorsement
+              <p className="text-gray-700">
+                President&apos;s List (Fall 2023) | Dean&apos;s List (Spring
+                2024)
               </p>
-              <ul className="list-disc list-inside mt-2 text-gray-700 space-y-1">
-                <li>Science Olympiad, Team Captain; Robotics Team, Member</li>
-              </ul>
             </div>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800 border-b pb-2">
+            <h2 className="text-3xl font-semibold mb-4 text-blue-800 border-b-2 border-blue-300 pb-2">
               Experience
             </h2>
+
             <div className="mb-4">
-              <h3 className="text-xl font-medium text-gray-700">
-                University of Missouri-Kansas City, NSF Research Experience for
-                Undergraduates Program (REU)
-              </h3>
-              <p className="text-gray-600 italic">
+              <h3 className="text-xl font-medium text-gray-800">
                 AI Empowered Cybersecurity Research Fellow
-              </p>
-              <ul className="list-disc list-inside mt-2 text-gray-700 space-y-1">
-                <li>
-                  Conducted research on generative AI and LLMs for cybersecurity
-                  challenges like code vulnerability detection in C code.
-                </li>
-                <li>
-                  Modified the methodology of HaluRUST, a framework for
-                  leveraging LLMs to detect vulnerabilities in Rust code.
-                </li>
-                <li>
-                  Presented findings in a final presentation and a comprehensive
-                  paper for NSF.
-                </li>
-              </ul>
-            </div>
-            <div className="mb-4">
-              <h3 className="text-xl font-medium text-gray-700">
-                Texas A&M University Cybersecurity Center, SCADA Testbed Lab
               </h3>
               <p className="text-gray-600 italic">
-                Operational Technology Engineering Student Technician
+                University of Missouri-Kansas City, NSF REU Program (May 2024 -
+                Present)
               </p>
-              <ul className="list-disc list-inside mt-2 text-gray-700 space-y-1">
-                <li>
-                  Executed various Industrial Internet of Things (IIoT) and
-                  AI/ML projects within the SCADA Testbed Lab.
-                </li>
-                <li>
-                  Supported projects utilizing AI, Computer Science, and
-                  Cybersecurity, including an Intrusion Detection System and
-                  Amazon Alexa cybersecurity lab assistant.
-                </li>
-              </ul>
+              <p className="text-gray-700">
+                Researched generative AI and LLMs for cybersecurity
+                vulnerabilities, collaborated with graduate students on academic
+                publications, and presented findings in a comprehensive report
+                and final presentation. Modified HaluRUST for detecting Rust
+                code vulnerabilities.
+              </p>
+              <div className="mt-2">
+                <h4 className="text-blue-800 font-semibold">
+                  Skills and Technologies:
+                </h4>
+                <p className="text-gray-600">
+                  Python, GPT, Cybersecurity, LLM, C, Prompt Engineering, Big
+                  Data, Data Science, Research, AI, Google Colab, GCP
+                </p>
+              </div>
             </div>
-            {/* Add more experience items as needed */}
+
+            <div className="mb-4">
+              <h3 className="text-xl font-medium text-gray-800">
+                Operational Technology Engineering Student Technician
+              </h3>
+              <p className="text-gray-600 italic">
+                Texas A&M University, SCADA Testbed Lab (Jan 2023 - Aug 2024)
+              </p>
+              <p className="text-gray-700">
+                Executed IIoT and AI/ML projects within the SCADA Testbed for
+                R&D and cybersecurity. Developed an Intrusion Detection System
+                and an Amazon Alexa Cybersecurity assistant, integrating AI/ML
+                into real-time operational environments.
+              </p>
+              <div className="mt-2">
+                <h4 className="text-blue-800 font-semibold">
+                  Skills and Technologies:
+                </h4>
+                <p className="text-gray-600">
+                  Python, SCADA Engineering, AWS, Google Colab, Machine
+                  Learning, IoT, IIoT, AI, GPT, LLM, Intrusion Detection
+                </p>
+              </div>
+            </div>
+
+            <div className="mb-4">
+              <h3 className="text-xl font-medium text-gray-800">
+                Undergraduate Researcher
+              </h3>
+              <p className="text-gray-600 italic">
+                Texas A&M University, PHATE Research Group (2022 - 2023)
+              </p>
+              <p className="text-gray-700">
+                Automated 3ω system using LabVIEW to study thermal properties of
+                materials, converting physical systems into digital logic for
+                phase transformation research.
+              </p>
+              <div className="mt-2">
+                <h4 className="text-blue-800 font-semibold">
+                  Skills and Technologies:
+                </h4>
+                <p className="text-gray-600">
+                  LabVIEW, Digital Systems, Thermal Physics, Research and
+                  Design, Material Science, Operational Technology
+                </p>
+              </div>
+            </div>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800 border-b pb-2">
+            <h2 className="text-3xl font-semibold mb-4 text-blue-800 border-b-2 border-blue-300 pb-2">
               Projects
             </h2>
             <div className="mb-4">
-              <h3 className="text-xl font-medium text-gray-700">
-                Capstone Project - TAMU CCSCI 359 Systems Analysis & Design
+              <h3 className="text-xl font-medium text-gray-800">
+                Capstone Project - TAMUC CSCI 359
               </h3>
               <p className="text-gray-700 italic">
-                Led a full stack multi-platform application that utilizes
-                generative AI and ML to automate game controls for D&D,
-                eliminating the need for a dedicated Dungeon Master with years
-                of experience.
+                AI-powered D&D automation platform
               </p>
+              <p className="text-gray-700">
+                Led development of full-stack platform that automated game
+                master tasks using machine learning and AI, effectively reducing
+                manual efforts required for Dungeons & Dragons gameplay.
+              </p>
+              <div className="mt-2">
+                <h4 className="text-blue-800 font-semibold">
+                  Skills and Technologies:
+                </h4>
+                <p className="text-gray-600">
+                  Python, JavaScript, LLM, Full-stack Development, Prompt
+                  Engineering, UI Design, Systems Development
+                </p>
+              </div>
             </div>
+
             <div className="mb-4">
-              <h3 className="text-xl font-medium text-gray-700">
-                MQTT Protocol Project - TAMU Cybersecurity Center/SCADA Testbed
+              <h3 className="text-xl font-medium text-gray-800">
+                MQTT Protocol Project - TAMU SCADA Testbed
               </h3>
               <p className="text-gray-700 italic">
-                Developed a small-scale IIoT SCADA/OT system with Raspberry Pi
-                4&apos;s and CLICK PLC.
+                Developed IIoT SCADA/OT system with Raspberry Pi
               </p>
+              <p className="text-gray-700">
+                Created an IIoT SCADA system using Raspberry Pi and PLC to
+                monitor and control operational technology networks for
+                real-world applications.
+              </p>
+              <div className="mt-2">
+                <h4 className="text-blue-800 font-semibold">
+                  Skills and Technologies:
+                </h4>
+                <p className="text-gray-600">
+                  Raspberry Pi, PLC, MQTT, Python, IoT, IIoT, SCADA, Networking,
+                  Operational Technology
+                </p>
+              </div>
             </div>
-            {/* Add more project items as needed */}
+
+            <div className="mb-4">
+              <h3 className="text-xl font-medium text-gray-800">
+                Post-Quantum Algorithms Development Project
+              </h3>
+              <p className="text-gray-700 italic">
+                NIST-approved quantum TLS demonstration
+              </p>
+              <p className="text-gray-700">
+                Researched post-quantum encryption algorithms and demonstrated
+                their application through NIST-approved quantum TLS traffic
+                using Wireshark and the Open Quantum Safe Project.
+              </p>
+              <div className="mt-2">
+                <h4 className="text-blue-800 font-semibold">
+                  Skills and Technologies:
+                </h4>
+                <p className="text-gray-600">
+                  Post-Quantum Cryptography, Wireshark, Quantum Computing,
+                  Linux, Cybersecurity, Docker, Research, Git, NIST
+                </p>
+              </div>
+            </div>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800 border-b pb-2">
+          {/* Skills section: Adding color to background */}
+          <section className="bg-blue-50 p-4 rounded-md shadow-inner">
+            <h2 className="text-3xl font-semibold mb-2 text-blue-800 border-b-2 border-blue-300 pb-2">
               Skills
             </h2>
-            <ul className="flex flex-wrap gap-2">
+            <ul className="flex flex-wrap gap-2 text-sm font-medium">
               {[
-                "C++",
+                "C++, C",
                 "Python",
-                "AI",
                 "Machine Learning",
-                "Software Development",
+                "AI",
                 "Cloud Computing",
+                "Cybersecurity",
                 "GPT",
                 "LLM",
-                "Data Structures",
-                "Algorithms",
+                "Data Structures and Algorithms",
                 "JavaScript",
-                "React.js",
-                "Node.js",
-                "Cybersecurity",
+                "React.js, Next.js",
+                "Typescript",
                 "SCADA",
-                "IoT",
+                "IoT, IIoT",
+                "Docker",
+                "Linux",
+                "SQL",
+                "Git",
+                "Matlab",
+                "AWS",
+                "Object-Oriented Programming",
+                "Databases",
+                "Operating Systems",
+                "RAG",
+                "Full-stack Development",
+                "API Development",
+                "Prompt Engineering",
+                "UI",
+                "Systems Development",
               ].map((skill) => (
                 <li
                   key={skill}
-                  className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                  className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
                   {skill}
                 </li>
               ))}
