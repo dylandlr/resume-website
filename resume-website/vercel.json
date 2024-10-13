@@ -2,7 +2,18 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://dylandelarosa.net/api/:path*"
+      "destination": "https://52.34.209.128/api/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/:path*",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://dylandelarosa.net"
+        }
+      ]
     }
   ]
 }
