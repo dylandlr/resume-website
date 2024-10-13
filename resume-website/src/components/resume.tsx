@@ -90,8 +90,8 @@ export function Resume() {
                 AI Empowered Cybersecurity Research Fellow
               </h3>
               <p className="text-gray-600 italic">
-                University of Missouri-Kansas City, NSF REU Program (May 2024 -
-                Present)
+                University of Missouri-Kansas City, NSF Research Experience for
+                Undergraduates (May 2024 - Present)
               </p>
               <p className="text-gray-700">
                 Researched generative AI and LLMs for cybersecurity
