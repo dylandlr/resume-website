@@ -71,7 +71,7 @@ export function Resume() {
                 Bachelor&apos;s of Science, Computer Science
               </p>
               <p className="text-gray-600">
-                GPA: 3.4 | Graduation: December 2024
+                GPA: 3.8 | Graduation: December 2024
               </p>
               <p className="text-gray-700">
                 President&apos;s List (Fall 2023) | Dean&apos;s List (Spring
@@ -140,7 +140,8 @@ export function Resume() {
                 Undergraduate Researcher
               </h3>
               <p className="text-gray-600 italic">
-                Texas A&M University, PHATE Research Group (2022 - 2023)
+                Texas A&M University, PHATE Research Group (May 2020 - March
+                2021)
               </p>
               <p className="text-gray-700">
                 Automated 3ω system using LabVIEW to study thermal properties of
