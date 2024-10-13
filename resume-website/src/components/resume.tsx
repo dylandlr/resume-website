@@ -191,7 +191,7 @@ export function Resume() {
                 MQTT Protocol Project - TAMU SCADA Testbed
               </h3>
               <p className="text-gray-700 italic">
-                Developed IIoT SCADA/OT system with Raspberry Pi
+                IIoT SCADA/OT system with Raspberry Pi
               </p>
               <p className="text-gray-700">
                 Created an IIoT SCADA system using Raspberry Pi and PLC to
@@ -214,7 +214,7 @@ export function Resume() {
                 Post-Quantum Algorithms Development Project
               </h3>
               <p className="text-gray-700 italic">
-                NIST-approved quantum TLS demonstration
+                NIST Post-quantum Encryption Demonstration
               </p>
               <p className="text-gray-700">
                 Researched post-quantum encryption algorithms and demonstrated
