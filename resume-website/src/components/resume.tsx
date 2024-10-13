@@ -97,8 +97,8 @@ export function Resume() {
                 Researched generative AI and LLMs for cybersecurity
                 vulnerabilities, collaborated with graduate students on academic
                 publications, and presented findings in a comprehensive report
-                and final presentation. Modified HaluRUST for detecting Rust
-                code vulnerabilities.
+                and final presentation for the National Science Foundation.
+                Modified HaluRUST for detecting Rust code vulnerabilities.
               </p>
               <div className="mt-2">
                 <h4 className="text-blue-800 font-semibold">
