@@ -140,8 +140,7 @@ export function Resume() {
                 Undergraduate Researcher
               </h3>
               <p className="text-gray-600 italic">
-                Texas A&M University, PHATE Research Group (May 2020 - March
-                2021)
+                Texas A&M University, PHATE Research Group (May 2020 - Mar 2021)
               </p>
               <p className="text-gray-700">
                 Automated 3ω system using LabVIEW to study thermal properties of
