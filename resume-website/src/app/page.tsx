@@ -1,7 +1,4 @@
 import { Resume } from "@/components/resume";
-import Chat from "@/components/Chat";
-//import Recommendations from "@/components/Recommendations"; add at a later date once recommendations is fleshed out
-
 export default function Home() {
   return (
     <>
@@ -29,18 +26,8 @@ export default function Home() {
         sizes="16x16"
         href="/favicon-16x16.png"></link>
       <link rel="manifest" href="/site.webmanifest"></link>
-
       <div className="App">
         <Resume />
-        {/* AI Chatbot Integration */}
-        <section>
-          <Chat />
-        </section>
-        {/* Personalized Portfolio Recommendations
-        <section>
-          <h2>Looking for specific projects?</h2>
-          <Recommendations />
-        </section> */}
       </div>
     </>
   );

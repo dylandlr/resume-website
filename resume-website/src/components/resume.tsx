@@ -1,19 +1,10 @@
 "use client";
-// resume react.js, html + tailwindcss
+// resume html + tailwindcss
 import { Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
 
-/**
- * The Resume component renders a resume in a Next.js page. It displays education, experience, projects, and skills.
- *
- * The component uses Tailwind CSS for styling. It uses a combination of utility-first and component classes to create a mobile-friendly, responsive layout.
- *
- * The component renders a header with contact information, a main section with education, experience, projects, and skills, and a footer with a link to the GitHub repository.
- *
- * @returns The Resume component.
- */
 export function Resume() {
   return (
-    <div className="min-h-screen bg-gray-50 py-4 px-4 sm:px-6 lg:px-8 z-0">
+    <div className="min-h-screen bg-gray-50 py-4 px-4 sm:px-6 lg:px-8">
       {" "}
       {/* Light background */}
       <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
