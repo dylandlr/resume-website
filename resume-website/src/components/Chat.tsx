@@ -28,8 +28,8 @@ export default function Chat() {
   return (
     <Draggable>
       <div className="fixed bottom-10 right-10 w-80 z-50">
-        <Card className="bg-white shadow-xl rounded-lg border-gray-200">
-          <CardHeader className="p-4 bg-blue-600 text-white flex justify-between">
+        <Card className="bg-white bg-opacity-100 shadow-xl rounded-lg border-gray-200">
+          <CardHeader className="p-4 bg-blue-600 text-white flex justify-between rounded-lg">
             <span className="text-lg font-semibold">Chat Assistant</span>
           </CardHeader>
 
