@@ -1,3 +1,5 @@
+// Chat.tsx
+
 "use client";
 
 import { useChat } from "ai/react";
@@ -13,6 +15,17 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 
+/**
+ * A draggable chat window that displays a conversation with an AI model.
+ *
+ * It uses the `useChat` hook to manage the conversation and displays the
+ * conversation history in a scrollable card.
+ *
+ * The user can type a message in the input field and submit it to the AI
+ * model using the send button.
+ *
+ * The chat window is draggable and can be moved around the screen.
+ */
 export default function Chat() {
   const { messages, input, handleSubmit, handleInputChange, isLoading } =
     useChat();
