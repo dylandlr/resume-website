@@ -169,6 +169,16 @@ export default function Chat() {
                 {
                   "Demonstration of Retrieval Augmented Generation (RAG) by Dylan M. De La Rosa."
                 }
+                <p className="text-center text-xs text-gray-800">
+                  Powered by GPT-4
+                  <a
+                    href="https://help.openai.com/en/articles/8868588-retrieval-augmented-generation-rag-and-semantic-search-for-gpts"
+                    className="mx-2 text-blue-500 hover:underline text-xs"
+                    target="_blank"
+                    rel="noreferrer">
+                    {"Read more"}
+                  </a>
+                </p>
               </p>
             </CardFooter>
           </Card>
