@@ -95,23 +95,28 @@ export default function Chat() {
                   className={`mb-2 flex items-start ${
                     message.role === "user" ? "justify-end" : "justify-start"
                   }`}>
-                  {/* Icons for differentiating user vs AI */}
-                  <div className="mr-2">
-                    {message.role === "user" ? (
-                      <FaUser className="text-blue-600" />
-                    ) : (
-                      <FaRobot className="text-gray-500" />
-                    )}
-                  </div>
-                  {/* Message content */}
-                  <div
-                    className={`inline-block p-2 rounded-lg ${
-                      message.role === "user"
-                        ? "bg-blue-600 text-white"
-                        : "bg-gray-200 text-black"
-                    }`}>
-                    {message.content}
-                  </div>
+                  {/* User's message: icon on the right, message on the left */}
+                  {message.role === "user" ? (
+                    <div className="flex items-start space-x-2">
+                      <div className="inline-block p-2 rounded-lg bg-blue-600 text-white max-w-xs break-words">
+                        {message.content}
+                      </div>
+                      {/* Fix the icon size regardless of text length */}
+                      <div className="flex-shrink-0">
+                        <FaUser className="text-blue-600 w-6 h-6" />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex items-start space-x-2">
+                      {/* Fix the icon size regardless of text length */}
+                      <div className="flex-shrink-0">
+                        <FaRobot className="text-gray-500 w-6 h-6" />
+                      </div>
+                      <div className="inline-block p-2 rounded-lg bg-gray-200 text-black max-w-xs break-words">
+                        {message.content}
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
 
