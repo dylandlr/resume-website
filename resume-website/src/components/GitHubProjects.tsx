@@ -100,6 +100,9 @@ export function GitHubProjects() {
   const [commitInfo, setCommitInfo] = useState<Record<number, CommitInfo>>({});
   const [showVideo, setShowVideo] = useState<number | null>(null);
   const videoRef = useRef<HTMLDivElement>(null);
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 768
+  );
 
   // Fetch commit info when expandedId changes
   useEffect(() => {
@@ -288,6 +291,15 @@ export function GitHubProjects() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center text-white gap-2">
@@ -411,7 +423,10 @@ export function GitHubProjects() {
             <div
               className="col-span-1 md:col-span-2 lg:col-span-3 bg-slate-950/95 backdrop-blur-sm border border-slate-700 rounded-lg p-4 sm:p-8 animate-slideDown shadow-xl relative mx-4 sm:mx-0"
               style={{
-                gridRow: `${Math.floor(index / 3) + 2}`,
+                gridRow:
+                  windowWidth < 768
+                    ? `${index + 2}`
+                    : `${Math.floor(index / 3) + 2}`,
                 gridColumn: "1 / -1",
                 marginTop: "1.5rem",
                 backgroundColor: "#111827",
@@ -535,7 +550,10 @@ export function GitHubProjects() {
             <div
               className="col-span-1 md:col-span-2 lg:col-span-3 bg-slate-950/95 backdrop-blur-sm border border-slate-700 rounded-lg p-4 sm:p-8 animate-slideDown shadow-xl relative mx-4 sm:mx-0"
               style={{
-                gridRow: `${Math.floor(index / 3) + 3}`,
+                gridRow:
+                  windowWidth < 768
+                    ? `${index + 3}`
+                    : `${Math.floor(index / 3) + 3}`,
                 gridColumn: "1 / -1",
                 marginTop: "1.5rem",
                 backgroundColor: "#111827",
