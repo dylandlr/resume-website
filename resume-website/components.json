@@ -7,6 +7,11 @@
     "config": "tailwind.config.ts",
     "css": "src/app/globals.css",
     "baseColor": "gray",
+    "favicon": "public/favicon.ico",
+    "favicon16": "public/favicon-16x16.png",
+    "favicon32": "public/favicon-32x32.png",
+    "appleTouchIcon": "public/apple-touch-icon.png",
+    "manifest": "public/site.webmanifest",
     "cssVariables": true
   },
   "aliases": {
