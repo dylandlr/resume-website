@@ -17,14 +17,14 @@ export function Resume() {
       {" "}
       {/* Light background */}
       <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-        <header className="bg-gradient-to-r from-blue-700 to-blue-900 text-white p-6 sm:p-6">
-          {" "}
-          {/* Deepened the blue */}
-          <h1 className="text-4xl font-bold">Dylan M. De La Rosa</h1>
-          <p className="text-xl mt-1 text-blue-100">
+        <header className="bg-gradient-to-r from-blue-700 to-blue-900 text-white p-4 sm:p-6">
+          <h1 className="text-3xl sm:text-4xl font-bold">
+            Dylan M. De La Rosa
+          </h1>
+          <p className="text-lg sm:text-xl mt-1 text-blue-100">
             Computer Scientist / Engineer / Researcher
           </p>
-          <div className="mt-2 flex flex-wrap gap-4">
+          <div className="mt-2 flex flex-wrap gap-2 sm:gap-4">
             <div className="flex items-center text-sm sm:text-base">
               <Mail className="h-5 w-5 mr-2 text-blue-200" />
               <a
@@ -243,11 +243,11 @@ export function Resume() {
           </section>
 
           {/* Skills section: Adding color to background */}
-          <section className="bg-blue-50 p-4 rounded-md shadow-inner">
-            <h2 className="text-3xl font-semibold mb-2 text-blue-800 border-b-2 border-blue-300 pb-2">
+          <section className="bg-blue-50 p-3 sm:p-4 rounded-md shadow-inner">
+            <h2 className="text-2xl sm:text-3xl font-semibold mb-2 text-blue-800 border-b-2 border-blue-300 pb-2">
               Skills
             </h2>
-            <ul className="flex flex-wrap gap-2 text-sm font-medium">
+            <ul className="flex flex-wrap gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium">
               {[
                 "C++, C",
                 "Python",

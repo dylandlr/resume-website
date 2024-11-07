@@ -10,16 +10,24 @@ const PortfolioContent: React.FC = () => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    // Handle touch events for mobile
+    e.preventDefault();
+  };
+
   return (
     <main className="relative z-10">
       {/* Home Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center">
+        className="min-h-screen flex items-center justify-center px-4 sm:px-6"
+        onTouchStart={handleTouchStart}>
         <div className="text-center text-white">
-          <h1 className="text-6xl font-bold mb-6">Dylan M. De La Rosa</h1>
-          <p className="text-2xl mb-8">AI Researcher</p>
-          <div className="flex gap-4 justify-center mb-8">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6">
+            Dylan M. De La Rosa
+          </h1>
+          <p className="text-xl sm:text-2xl mb-6 sm:mb-8">AI Researcher</p>
+          <div className="flex gap-3 sm:gap-4 justify-center mb-6 sm:mb-8">
             <a
               href="https://github.com/dylandlr"
               target="_blank"
@@ -42,7 +50,7 @@ const PortfolioContent: React.FC = () => {
             </a>
           </div>
           <ChevronDown
-            size={40}
+            size={32}
             className="mx-auto animate-bounce cursor-pointer"
             onClick={() => scrollToSection("projects")}
             aria-label="Scroll to Projects"

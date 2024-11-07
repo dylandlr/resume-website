@@ -8,11 +8,22 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
-import { Star, GitFork, Book, AlertCircle, Loader2, Eye } from "lucide-react";
+import {
+  Star,
+  GitFork,
+  Book,
+  AlertCircle,
+  Loader2,
+  Eye,
+  Github,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 interface GitHubRepo {
+  owner: {
+    login: string;
+  };
   id: number;
   name: string;
   description: string | null;
@@ -66,11 +77,11 @@ interface RepoStats {
   };
 }
 
-// const GITHUB_HEADERS = {
-//   Accept: "application/vnd.github.v3+json",
-//   "User-Agent": "Portfolio-Website",
-//   Authorization: `token ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-// };
+const GITHUB_HEADERS = {
+  Accept: "application/vnd.github.v3+json",
+  "User-Agent": "Portfolio-Website",
+  Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+};
 
 export function GitHubProjects() {
   const [projects, setProjects] = useState<GitHubRepo[]>([]);
@@ -117,31 +128,44 @@ export function GitHubProjects() {
         setIsLoading(true);
         setError(null);
 
-        const response = await fetch(
-          "https://api.github.com/users/dylandlr/repos?sort=updated&per_page=10",
-          {
-            headers: {
-              Accept: "application/vnd.github.v3+json",
-              "User-Agent": "Portfolio-Website",
-            },
-            next: { revalidate: 3600 }, // Cache for 1 hour
-          }
-        );
+        // Fetch both your repos and repos you contribute to
+        const [ownedRepos, contributedRepos] = await Promise.all([
+          fetch(
+            "https://api.github.com/users/dylandlr/repos?sort=updated&per_page=100",
+            {
+              headers: GITHUB_HEADERS,
+              cache: "no-store",
+            }
+          ),
+          // This endpoint gets repos you can contribute to
+          fetch(
+            "https://api.github.com/user/repos?affiliation=collaborator&per_page=100",
+            {
+              headers: GITHUB_HEADERS,
+              cache: "no-store",
+            }
+          ),
+        ]);
 
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || "Failed to fetch projects");
+        if (!ownedRepos.ok || !contributedRepos.ok) {
+          throw new Error("Failed to fetch projects");
         }
 
-        const data = await response.json();
-        const filteredProjects = data
-          .filter((repo: GitHubRepo) => !repo.fork)
-          .sort(
-            (a: GitHubRepo, b: GitHubRepo) =>
-              b.stargazers_count - a.stargazers_count
-          );
+        const ownedData = await ownedRepos.json();
+        const contributedData = await contributedRepos.json();
 
-        setProjects(filteredProjects);
+        // Combine and sort all repos
+        const allProjects = [...ownedData, ...contributedData].sort(
+          (a: GitHubRepo, b: GitHubRepo) =>
+            new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+        );
+
+        // Remove duplicates based on repo id
+        const uniqueProjects = Array.from(
+          new Map(allProjects.map((item) => [item.id, item])).values()
+        );
+
+        setProjects(uniqueProjects);
       } catch (err) {
         setError(
           err instanceof Error ? err.message : "Failed to fetch projects"
@@ -161,19 +185,14 @@ export function GitHubProjects() {
 
       const fetchRepoStats = async () => {
         try {
-          const headers = {
-            Accept: "application/vnd.github.v3+json",
-            "User-Agent": "Portfolio-Website",
-          };
-
           const [contributors, pulls, releases] = await Promise.all([
-            fetch(project.contributors_url, { headers }),
+            fetch(project.contributors_url, { headers: GITHUB_HEADERS }),
             fetch(
               `https://api.github.com/repos/dylandlr/${project.name}/pulls?state=all`,
-              { headers }
+              { headers: GITHUB_HEADERS }
             ),
             fetch(project.releases_url.replace("{/id}", "/latest"), {
-              headers,
+              headers: GITHUB_HEADERS,
             }),
           ]);
 
@@ -247,7 +266,7 @@ export function GitHubProjects() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 relative px-4 sm:px-6">
       {projects.map((project, index) => (
         <React.Fragment key={project.id}>
           <Card
@@ -255,7 +274,8 @@ export function GitHubProjects() {
               setExpandedId(expandedId === project.id ? null : project.id)
             }
             className={cn(
-              "bg-slate-900 text-white border-slate-800 hover:bg-slate-800/95 transition-all duration-300 cursor-pointer relative",
+              "bg-slate-900 text-white border-slate-800 hover:bg-slate-800/95 transition-all duration-300 cursor-pointer relative overflow-hidden",
+              "max-w-full",
               expandedId === project.id &&
                 "ring-2 ring-blue-500 shadow-lg shadow-blue-500/20 scale-[1.02] z-20"
             )}>
@@ -270,8 +290,12 @@ export function GitHubProjects() {
                   {project.name}
                 </a>
               </CardTitle>
+              <div className="text-sm text-slate-500 mt-1 flex items-center gap-1">
+                <Github className="w-4 h-4" />
+                {project.owner.login}/{project.name}
+              </div>
               {project.description && (
-                <CardDescription className="text-slate-400">
+                <CardDescription className="text-slate-400 mt-2">
                   {project.description}
                 </CardDescription>
               )}
@@ -338,7 +362,7 @@ export function GitHubProjects() {
 
           {expandedId === project.id && (
             <div
-              className="col-span-1 md:col-span-2 lg:col-span-3 bg-slate-950/95 backdrop-blur-sm border border-slate-700 rounded-lg p-8 animate-slideDown shadow-xl relative"
+              className="col-span-1 md:col-span-2 lg:col-span-3 bg-slate-950/95 backdrop-blur-sm border border-slate-700 rounded-lg p-4 sm:p-8 animate-slideDown shadow-xl relative mx-4 sm:mx-0"
               style={{
                 gridRow: `${Math.floor(index / 3) + 2}`,
                 gridColumn: "1 / -1",
