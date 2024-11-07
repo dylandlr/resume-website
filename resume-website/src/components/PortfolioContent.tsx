@@ -20,14 +20,16 @@ const PortfolioContent: React.FC = () => {
       {/* Home Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center px-4 sm:px-6"
+        className="min-h-screen flex items-center justify-center px-4"
         onTouchStart={handleTouchStart}>
-        <div className="text-center text-white">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6">
+        <div className="text-center text-white w-full max-w-3xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4">
             Dylan M. De La Rosa
           </h1>
-          <p className="text-xl sm:text-2xl mb-6 sm:mb-8">AI Researcher</p>
-          <div className="flex gap-3 sm:gap-4 justify-center mb-6 sm:mb-8">
+          <p className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">
+            AI Researcher
+          </p>
+          <div className="flex gap-4 justify-center mb-6">
             <a
               href="https://github.com/dylandlr"
               target="_blank"
@@ -50,7 +52,7 @@ const PortfolioContent: React.FC = () => {
             </a>
           </div>
           <ChevronDown
-            size={32}
+            size={24}
             className="mx-auto animate-bounce cursor-pointer"
             onClick={() => scrollToSection("projects")}
             aria-label="Scroll to Projects"
@@ -59,46 +61,46 @@ const PortfolioContent: React.FC = () => {
       </section>
 
       {/* About Section */}
-      <section
-        id="about"
-        className="min-h-screen flex items-center justify-center py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-white mb-8 text-center">
+      <section id="about" className="py-12 sm:py-20 px-4">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 sm:mb-8 text-center">
             About Me
           </h2>
           <Card className="bg-slate-900 text-white border-slate-800">
-            <CardContent className="pt-6 space-y-4">
-              <div className="flex justify-between items-center border-b border-slate-700 pb-2">
-                <h3 className="text-xl font-semibold">
+            <CardContent className="pt-6 space-y-6">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-slate-700 pb-4">
+                <h3 className="text-xl font-semibold mb-2 sm:mb-0">
                   Computer Science, B.S.
                 </h3>
                 <p className="text-slate-400">Expected December 2024</p>
               </div>
-              <ul className="list-disc list-inside">
-                <p className="text-lg leading-relaxed">
+
+              <div className="space-y-4 text-base sm:text-lg">
+                <p className="leading-relaxed">
                   AI & Cybersecurity Researcher with a focus on developing
                   innovative solutions in machine learning and cybersecurity.
                   Currently collaborating with The University of Missouri-Kansas
                   City on advanced research projects while completing my degree.
                 </p>
-                <p className="text-lg mt-4">
+                <p>
                   Seeking full-time opportunities to leverage my research
                   experience and technical expertise in developing cutting-edge
                   solutions. Committed to continuous learning and contributing
                   to innovative projects that push the boundaries of technology.
                 </p>
-              </ul>
-              <div className="mt-4">
-                <h4 className="text-lg font-semibold mb-2 text-blue-400">
+              </div>
+
+              <div className="mt-6">
+                <h4 className="text-lg font-semibold mb-4 text-blue-400">
                   Core Competencies:
                 </h4>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {/* AI & Development Column */}
                   <div className="bg-slate-800/50 p-4 rounded-lg">
                     <h5 className="font-semibold text-blue-300 mb-3">
                       AI & Development
                     </h5>
-                    <ul className="space-y-2 text-slate-300">
+                    <ul className="space-y-2 text-slate-300 text-sm sm:text-base">
                       <li className="flex items-center">
                         <span className="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
                         Artificial Intelligence
@@ -114,12 +116,12 @@ const PortfolioContent: React.FC = () => {
                     </ul>
                   </div>
 
-                  {/* Security & Infrastructure Column */}
+                  {/* Security & Systems Column */}
                   <div className="bg-slate-800/50 p-4 rounded-lg">
                     <h5 className="font-semibold text-blue-300 mb-3">
                       Security & Systems
                     </h5>
-                    <ul className="space-y-2 text-slate-300">
+                    <ul className="space-y-2 text-slate-300 text-sm sm:text-base">
                       <li className="flex items-center">
                         <span className="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
                         Cybersecurity
@@ -136,11 +138,11 @@ const PortfolioContent: React.FC = () => {
                   </div>
 
                   {/* Data & Cloud Column */}
-                  <div className="bg-slate-800/50 p-4 rounded-lg">
+                  <div className="bg-slate-800/50 p-4 rounded-lg sm:col-span-2 lg:col-span-1">
                     <h5 className="font-semibold text-blue-300 mb-3">
                       Data & Cloud
                     </h5>
-                    <ul className="space-y-2 text-slate-300">
+                    <ul className="space-y-2 text-slate-300 text-sm sm:text-base">
                       <li className="flex items-center">
                         <span className="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
                         Cloud Computing
@@ -163,9 +165,9 @@ const PortfolioContent: React.FC = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="min-h-screen py-20">
+      <section id="projects" className="py-12 sm:py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">
             Github Projects
           </h2>
           <GitHubProjects />
@@ -174,9 +176,8 @@ const PortfolioContent: React.FC = () => {
 
       {/* Footer Section */}
       <footer>
-        {/* Tech Stack Badge */}
         <div className="sticky bottom-0 right-0 flex justify-end">
-          <div className="bg-slate-900/90 backdrop-blur-sm border-t border-l border-slate-800 rounded-tl-xl px-4 py-2 text-sm text-slate-300 shadow-lg flex items-center gap-3 hover:bg-slate-900/95 transition-colors">
+          <div className="bg-slate-900/90 backdrop-blur-sm border-t border-l border-slate-800 rounded-tl-xl px-3 sm:px-4 py-2 text-xs sm:text-sm text-slate-300 shadow-lg flex items-center gap-2 sm:gap-3 hover:bg-slate-900/95 transition-colors">
             <span className="text-blue-400 font-medium">Built with</span>
             <div className="flex items-center gap-3">
               {/* Next.js */}
