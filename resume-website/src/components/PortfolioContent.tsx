@@ -2,13 +2,7 @@
 
 import React from "react";
 import { Github, Linkedin, Mail, FileText, ChevronDown } from "lucide-react";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { GitHubProjects } from "@/components/GitHubProjects";
 
 const PortfolioContent: React.FC = () => {

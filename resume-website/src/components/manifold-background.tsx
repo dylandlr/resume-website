@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useCallback } from "react";
 
 const ManifoldBackground = () => {
-  const requestRef = useRef();
-  const previousTimeRef = useRef();
-  const timeRef = useRef(0);
-  const pathsRef = useRef([]);
+  const requestRef = useRef<number>();
+  const previousTimeRef = useRef<number | null>(null);
+  const timeRef = useRef<number>(0);
+  const pathsRef = useRef<Array<{ d: string; z: number }>>([]);
 
   // Same constants as before
   const U_RES = 40;
@@ -14,7 +14,7 @@ const ManifoldBackground = () => {
   const CENTER_Y = 300;
   const VIEWER_DISTANCE = 8;
 
-  const project3Dto2D = useCallback((x, y, z) => {
+  const project3Dto2D = useCallback((x: number, y: number, z: number) => {
     const depth = VIEWER_DISTANCE + z;
     const perspective = VIEWER_DISTANCE / depth;
     return {
@@ -23,9 +23,8 @@ const ManifoldBackground = () => {
       z: z,
     };
   }, []);
-
   const generateManifoldPoints = useCallback(
-    (timeVal) => {
+    (timeVal: number) => {
       const points = new Array(U_RES + 1);
       const timeScale = timeVal * 0.0005;
 
@@ -77,43 +76,53 @@ const ManifoldBackground = () => {
     [project3Dto2D]
   );
 
-  const generatePath = useCallback((points, isHorizontal, index) => {
-    const path = [];
-    const length = isHorizontal ? points[0].length : points.length;
-    const getPoint = (i) =>
-      isHorizontal ? points[index][i] : points[i][index];
+  type Point = { x: number; y: number; z: number };
 
-    // Start path
-    const startPoint = getPoint(0);
-    path.push(`M ${startPoint.x} ${startPoint.y}`);
+  const generatePath = useCallback(
+    (points: Point[][], isHorizontal: boolean, index: number) => {
+      const path: string[] = [];
+      const length = isHorizontal ? points[0].length : points.length;
+      const getPoint = (i: number) =>
+        isHorizontal ? points[index][i] : points[i][index];
 
-    // Generate smooth curve through points
-    for (let i = 1; i < length; i++) {
-      const prev = getPoint(i - 1);
-      const curr = getPoint(i);
-      const next = i < length - 1 ? getPoint(i + 1) : getPoint(0);
+      // Start path
+      const startPoint = getPoint(0);
+      path.push(`M ${startPoint.x} ${startPoint.y}`);
 
-      // Calculate control points for smoother curve
-      const cpx1 = prev.x + (curr.x - prev.x) * 0.5;
-      const cpy1 = prev.y + (curr.y - prev.y) * 0.5;
-      const cpx2 = curr.x - (next.x - curr.x) * 0.5;
-      const cpy2 = curr.y - (next.y - curr.y) * 0.5;
+      // Generate smooth curve through points
+      for (let i = 1; i < length; i++) {
+        const prev = getPoint(i - 1);
+        const curr = getPoint(i);
+        const next = i < length - 1 ? getPoint(i + 1) : getPoint(0);
 
-      path.push(`C ${cpx1} ${cpy1} ${cpx2} ${cpy2} ${curr.x} ${curr.y}`);
-    }
+        // Calculate control points for smoother curve
+        const cpx1 = prev.x + (curr.x - prev.x) * 0.5;
+        const cpy1 = prev.y + (curr.y - prev.y) * 0.5;
+        const cpx2 = curr.x - (next.x - curr.x) * 0.5;
+        const cpy2 = curr.y - (next.y - curr.y) * 0.5;
 
-    // Close the path properly
-    path.push("Z");
+        path.push(`C ${cpx1} ${cpy1} ${cpx2} ${cpy2} ${curr.x} ${curr.y}`);
+      }
 
-    const midPoint = Math.floor(length / 2);
-    const z = getPoint(midPoint).z;
+      // Close the path properly
+      path.push("Z");
 
-    return { d: path.join(" "), z };
-  }, []);
+      const midPoint = Math.floor(length / 2);
+      const z = getPoint(midPoint).z;
 
+      return { d: path.join(" "), z };
+    },
+    []
+  );
   const animate = useCallback(
-    (timestamp) => {
-      if (!previousTimeRef.current) previousTimeRef.current = timestamp;
+    (timestamp: number) => {
+      if (previousTimeRef.current === null) {
+        // Check for null instead of undefined
+        previousTimeRef.current = timestamp;
+        timeRef.current = 0;
+        requestRef.current = requestAnimationFrame(animate);
+        return;
+      }
       const deltaTime = timestamp - previousTimeRef.current;
       timeRef.current += deltaTime;
 

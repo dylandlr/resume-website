@@ -8,15 +8,7 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
-import {
-  Github,
-  Eye,
-  Star,
-  GitFork,
-  Book,
-  AlertCircle,
-  Loader2,
-} from "lucide-react";
+import { Star, GitFork, Book, AlertCircle, Loader2, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -87,7 +79,37 @@ export function GitHubProjects() {
   const [retryCount, setRetryCount] = useState(0);
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [repoStats, setRepoStats] = useState<Record<number, RepoStats>>({});
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [commitInfo, setCommitInfo] = useState<Record<number, CommitInfo>>({});
+
+  // Fetch commit info when expandedId changes
+  useEffect(() => {
+    if (expandedId) {
+      const fetchCommitInfo = async () => {
+        const project = projects.find((p) => p.id === expandedId);
+        if (!project) return;
+
+        try {
+          const response = await fetch(
+            project.commits_url.replace("{/sha}", "")
+          );
+          if (!response.ok) return;
+          const commits = await response.json();
+
+          setCommitInfo((prev) => ({
+            ...prev,
+            [expandedId]: {
+              total: commits.length,
+              recentCommits: commits.slice(0, 5),
+            },
+          }));
+        } catch (err) {
+          console.error("Error fetching commit info:", err);
+        }
+      };
+      fetchCommitInfo();
+    }
+  }, [expandedId, projects]);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -147,7 +169,7 @@ export function GitHubProjects() {
           const [contributors, pulls, releases] = await Promise.all([
             fetch(project.contributors_url, { headers }),
             fetch(
-              `https://api.github.com/repos/${project.full_name}/pulls?state=all`,
+              `https://api.github.com/repos/dylandlr/${project.name}/pulls?state=all`,
               { headers }
             ),
             fetch(project.releases_url.replace("{/id}", "/latest"), {
@@ -168,9 +190,12 @@ export function GitHubProjects() {
                 ? contributorsData.length
                 : 0,
               pullRequests: {
-                open: pullsData.filter((pr: any) => pr.state === "open").length,
-                closed: pullsData.filter((pr: any) => pr.state === "closed")
-                  .length,
+                open: pullsData.filter(
+                  (pr: { state: string }) => pr.state === "open"
+                ).length,
+                closed: pullsData.filter(
+                  (pr: { state: string }) => pr.state === "closed"
+                ).length,
               },
               latestRelease: releaseData
                 ? {
@@ -393,9 +418,12 @@ export function GitHubProjects() {
                         {repoStats[project.id]?.latestRelease ? (
                           <>
                             {repoStats[project.id]?.latestRelease?.name} ({" "}
-                            {new Date(
-                              repoStats[project.id]?.latestRelease?.published_at
-                            ).toLocaleDateString()}
+                            {repoStats[project.id]?.latestRelease?.published_at
+                              ? new Date(
+                                  repoStats[project.id]?.latestRelease
+                                    ?.published_at || ""
+                                ).toLocaleDateString()
+                              : "No date"}
                             )
                           </>
                         ) : (
