@@ -2,6 +2,7 @@
 import { Viewport } from "next";
 import PortfolioContent from "@/components/PortfolioContent";
 import ManifoldBackground from "@/components/manifold-background";
+import Chat from "@/components/Chat";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -13,6 +14,7 @@ export default function PortfolioPage() {
     <div className="relative min-h-screen">
       <ManifoldBackground />
       <PortfolioContent />
+      <Chat />
     </div>
   );
 }

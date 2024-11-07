@@ -75,7 +75,7 @@ export default function Chat() {
           animate={{ opacity: 1, scale: 1 }}>
           <Card className="bg-white shadow-xl rounded-lg border-gray-200">
             <CardHeader className="p-4 bg-blue-600 text-white flex justify-between rounded-t-lg">
-              <span className="text-lg font-semibold">Chat</span>
+              <span className="text-lg font-semibold">Resume Chat</span>
             </CardHeader>
 
             <CardContent className="h-60 overflow-y-auto p-4" ref={scrollRef}>
