@@ -16,8 +16,8 @@ import "./globals.css";
 // });
 
 export const metadata: Metadata = {
-  title: "Dylan M. De La Rosa Resume Website",
-  description: "Resume Website developed by Dylan De La Rosa",
+  title: "Dylan M. De La Rosa Portfolio Website",
+  description: "Portfolio Website developed by Dylan De La Rosa",
   robots: "index, follow",
   manifest: "/site.webmanifest",
   icons: {
