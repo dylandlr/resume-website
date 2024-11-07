@@ -10,18 +10,12 @@ const PortfolioContent: React.FC = () => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    // Handle touch events for mobile
-    e.preventDefault();
-  };
-
   return (
     <main className="relative z-10">
       {/* Home Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center px-4"
-        onTouchStart={handleTouchStart}>
+        className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center text-white w-full max-w-3xl mx-auto">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4">
             Dylan M. De La Rosa
