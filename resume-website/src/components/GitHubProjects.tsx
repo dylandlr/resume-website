@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   Card,
   CardHeader,
@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 interface GitHubRepo {
   owner: {
@@ -50,6 +51,10 @@ interface GitHubRepo {
   contributors_url: string;
   pull_requests_url: string;
   releases_url: string;
+  demo_video?: {
+    type: "youtube";
+    url: string;
+  };
 }
 
 interface CommitInfo {
@@ -90,8 +95,11 @@ export function GitHubProjects() {
   const [retryCount, setRetryCount] = useState(0);
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [repoStats, setRepoStats] = useState<Record<number, RepoStats>>({});
+  const [, setShouldLoadIframe] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [commitInfo, setCommitInfo] = useState<Record<number, CommitInfo>>({});
+  const [showVideo, setShowVideo] = useState<number | null>(null);
+  const videoRef = useRef<HTMLDivElement>(null);
 
   // Fetch commit info when expandedId changes
   useEffect(() => {
@@ -162,10 +170,31 @@ export function GitHubProjects() {
 
         // Remove duplicates based on repo id
         const uniqueProjects = Array.from(
-          new Map(allProjects.map((item) => [item.id, item])).values()
+          new Map(
+            allProjects.map((item) => [
+              item.id,
+              {
+                ...item,
+                demo_video:
+                  item.name.toLowerCase() === "lootgen"
+                    ? {
+                        type: "youtube" as const,
+                        url: "wxfkPxpgObo", // Your YouTube video ID
+                      }
+                    : undefined,
+              },
+            ])
+          ).values()
         );
 
         setProjects(uniqueProjects);
+        console.log(
+          "Projects with videos:",
+          uniqueProjects.map((p) => ({
+            name: p.name,
+            video: p.demo_video,
+          }))
+        );
       } catch (err) {
         setError(
           err instanceof Error ? err.message : "Failed to fetch projects"
@@ -240,6 +269,24 @@ export function GitHubProjects() {
       fetchRepoStats();
     }
   }, [expandedId, projects]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadIframe(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   if (isLoading) {
     return (
@@ -457,6 +504,61 @@ export function GitHubProjects() {
                     </ul>
                   </div>
                 </div>
+              </div>
+              <div className="mt-8 flex justify-center">
+                <Button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (project.demo_video) {
+                      setShowVideo(
+                        showVideo === project.id ? null : project.id
+                      );
+                    }
+                  }}
+                  disabled={!project.demo_video}
+                  className={cn(
+                    "text-white transition-colors",
+                    project.demo_video
+                      ? "bg-blue-500 hover:bg-blue-600"
+                      : "bg-slate-700 cursor-not-allowed"
+                  )}>
+                  {project.demo_video
+                    ? showVideo === project.id
+                      ? "Hide Demo"
+                      : "Watch Demo"
+                    : "Demo Coming Soon"}
+                </Button>
+              </div>
+            </div>
+          )}
+          {showVideo === project.id && project.demo_video && (
+            <div
+              className="col-span-1 md:col-span-2 lg:col-span-3 bg-slate-950/95 backdrop-blur-sm border border-slate-700 rounded-lg p-4 sm:p-8 animate-slideDown shadow-xl relative mx-4 sm:mx-0"
+              style={{
+                gridRow: `${Math.floor(index / 3) + 3}`,
+                gridColumn: "1 / -1",
+                marginTop: "1.5rem",
+                backgroundColor: "#111827",
+              }}>
+              <div ref={videoRef} className="relative z-10 aspect-video">
+                {project.demo_video.type === "youtube" && (
+                  <>
+                    <Image
+                      src={`https://i.ytimg.com/vi/${project.demo_video.url}/mqdefault.jpg`}
+                      alt="Video preview"
+                      className="absolute inset-0 rounded-lg object-cover"
+                      fill
+                      priority={false}
+                    />
+                    <iframe
+                      loading="lazy"
+                      src={`https://www.youtube.com/embed/${project.demo_video.url}?autoplay=0&rel=0&modestbranding=1`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full rounded-lg"
+                    />
+                  </>
+                )}
               </div>
             </div>
           )}
