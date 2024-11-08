@@ -57,12 +57,12 @@ export default function Chat() {
     <>
       {/* Chat bubble with dynamic animation */}
       <motion.div
-        className="fixed bottom-5 right-5 z-50 bg-blue-600 text-white p-4 rounded-full cursor-pointer shadow-lg flex items-center justify-center"
+        className="fixed bottom-5 right-5 z-50 dark:shadow-white/5 dark:bg-slate-900 bg-white text-gray-900 dark:text-white p-4 rounded-full cursor-pointer shadow-lg flex items-center justify-center dark:border-slate-800 border-gray-200"
         onClick={toggleChat}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         animate={{
-          rotate: isOpen ? 180 : 0, // Rotate animation for chat-to-X icon
+          rotate: isOpen ? 180 : 0,
         }}
         transition={{ type: "spring", stiffness: 200 }}>
         {isOpen ? <AiOutlineClose size={24} /> : <AiOutlineMessage size={24} />}
@@ -73,46 +73,43 @@ export default function Chat() {
           className="fixed bottom-20 right-5 w-80 z-50"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}>
-          <Card className="bg-white shadow-xl rounded-lg border-gray-200">
-            <CardHeader className="p-4 bg-blue-600 text-white flex justify-between rounded-t-lg">
+          <Card className="dark:bg-slate-900 bg-white dark:text-white text-gray-900 dark:border-slate-800 border-gray-200">
+            <CardHeader className="p-4 dark:bg-slate-900 bg-white dark:text-white text-gray-900 flex justify-between rounded-t-lg dark:border-slate-800 border-gray-200">
               <span className="text-lg font-semibold">Resume Chat</span>
             </CardHeader>
 
             <CardContent className="h-60 overflow-y-auto p-4" ref={scrollRef}>
               {/* Welcome message */}
               {messages.length === 0 && (
-                <div className="text-center text-gray-500 my-4">
+                <div className="text-center dark:text-slate-400 text-gray-500 my-4">
                   Hi there 👋
                   <br />
                   Any questions about my resume?
                 </div>
               )}
 
-              {/* Render each message */}
+              {/* Message bubbles */}
               {messages.map((message) => (
                 <div
                   key={message.id}
                   className={`mb-2 flex items-start ${
                     message.role === "user" ? "justify-end" : "justify-start"
                   }`}>
-                  {/* User's message: icon on the right, message on the left */}
                   {message.role === "user" ? (
                     <div className="flex items-start space-x-2">
-                      <div className="inline-block p-2 rounded-lg bg-blue-600 text-white max-w-xs break-words">
+                      <div className="inline-block p-2 rounded-lg dark:bg-slate-800 bg-gray-100 dark:text-white text-gray-900 max-w-xs break-words">
                         {message.content}
                       </div>
-                      {/* Fix the icon size regardless of text length */}
                       <div className="flex-shrink-0">
-                        <FaUser className="text-blue-600 w-6 h-6" />
+                        <FaUser className="dark:text-blue-400 text-blue-600 w-6 h-6" />
                       </div>
                     </div>
                   ) : (
                     <div className="flex items-start space-x-2">
-                      {/* Fix the icon size regardless of text length */}
                       <div className="flex-shrink-0">
-                        <FaRobot className="text-gray-500 w-6 h-6" />
+                        <FaRobot className="dark:text-blue-400 text-blue-600 w-6 h-6" />
                       </div>
-                      <div className="inline-block p-2 rounded-lg bg-gray-200 text-black max-w-xs break-words">
+                      <div className="inline-block p-2 rounded-lg dark:bg-slate-800/50 bg-gray-100/50 dark:text-white text-gray-900 max-w-xs break-words">
                         {message.content}
                       </div>
                     </div>
@@ -120,68 +117,46 @@ export default function Chat() {
                 </div>
               ))}
 
-              {/* AI is typing indicator */}
+              {/* AI typing indicator */}
               {isTyping && (
-                <div className="text-gray-400 text-sm italic">
+                <div className="dark:text-slate-400 text-gray-500 text-sm italic">
                   AI is typing...
                 </div>
               )}
             </CardContent>
 
-            {/* <p className="text-center text-xs text-gray-800 mb-2">
-              Built with Next.js by Dylan De La Rosa
-              {" for demonstration of Retrieval Augmented Generation (RAG)."}
-            </p> */}
-
-            {/* Chat input */}
-            <CardFooter className="p-4 bg-gray-100">
+            <CardFooter className="p-4 dark:bg-slate-900 bg-white dark:border-slate-800 border-gray-200">
               <form
                 onSubmit={handleSubmit}
-                className="flex items-center space-x-2">
+                className="flex items-center space-x-2 w-full">
                 <Input
                   value={input}
                   onChange={handleInputChange}
                   placeholder="Send a message..."
                   disabled={isLoading}
-                  className="flex-grow"
+                  className="flex-grow dark:bg-slate-800 bg-gray-100 dark:border-slate-700 border-gray-300 dark:text-white text-gray-900 dark:placeholder:text-slate-400 placeholder:text-gray-500"
                 />
                 <Button
                   type="submit"
-                  disabled={isLoading || input.trim() === ""}>
+                  disabled={isLoading || input.trim() === ""}
+                  className="dark:bg-slate-800 bg-gray-100 dark:hover:bg-slate-700 hover:bg-gray-200 dark:text-white text-gray-900">
                   <FiSend />
                 </Button>
               </form>
             </CardFooter>
 
-            {/* Bottom navbar with Shadcn Navigation Menu */}
-            {/* <div className="bg-gray-100 rounded-b-lg">
-              <NavigationMenu className="flex justify-around">
-                <NavigationMenuItem asChild>
-                  <Button variant="ghost" className="focus:bg-gray-200">
-                    Chat
-                  </Button>
-                </NavigationMenuItem>
-                <NavigationMenuItem asChild>
-                  <Button variant="ghost" className="focus:bg-gray-200">
-                    Contact
-                  </Button>
-                </NavigationMenuItem>
-              </NavigationMenu>
-            </div> */}
-            <CardFooter className="p-2 bg-gray-100">
-              {/* Footer content */}
-              <p className="text-center text-xs text-gray-800">
-                {
-                  "Demonstration of Retrieval Augmented Generation (RAG) by Dylan M. De La Rosa."
-                }
-                <p className="text-center text-xs text-gray-800">
+            <CardFooter className="p-2 dark:bg-slate-900 bg-white dark:border-slate-800 border-gray-200">
+              <p className="text-center text-xs dark:text-slate-400 text-gray-500 w-full">
+                Demonstration of Retrieval Augmented Generation (RAG) by Dylan
+                M. De La Rosa.
+                <p className="text-center text-xs dark:text-slate-400 text-gray-500">
                   Powered by GPT-4
                   <a
                     href="https://help.openai.com/en/articles/8868588-retrieval-augmented-generation-rag-and-semantic-search-for-gpts"
-                    className="mx-2 text-blue-500 hover:underline text-xs"
+                    className="mx-2 dark:text-blue-400 text-blue-600 hover:underline text-xs"
                     target="_blank"
                     rel="noreferrer">
-                    {"Read more"}
+                    Read more
                   </a>
                 </p>
               </p>

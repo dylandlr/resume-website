@@ -333,7 +333,7 @@ export function GitHubProjects() {
               setExpandedId(expandedId === project.id ? null : project.id)
             }
             className={cn(
-              "bg-slate-900 text-white border-slate-800 hover:bg-slate-800/95 transition-all duration-300 cursor-pointer relative overflow-hidden",
+              "dark:bg-slate-900 bg-white dark:text-white text-gray-900 dark:border-slate-800 border-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800/95 transition-all duration-300 cursor-pointer relative overflow-hidden",
               "max-w-full",
               expandedId === project.id &&
                 "ring-2 ring-blue-500 shadow-lg shadow-blue-500/20 scale-[1.02] z-20"
@@ -421,7 +421,7 @@ export function GitHubProjects() {
 
           {expandedId === project.id && (
             <div
-              className="col-span-1 md:col-span-2 lg:col-span-3 bg-slate-950/95 backdrop-blur-sm border border-slate-700 rounded-lg p-4 sm:p-8 animate-slideDown shadow-xl relative mx-4 sm:mx-0"
+              className="col-span-1 md:col-span-2 lg:col-span-3 dark:bg-slate-900/95 bg-white/95 backdrop-blur-sm dark:border-slate-700 border-gray-200 rounded-lg p-4 sm:p-8 animate-slideDown shadow-xl relative mx-4 sm:mx-0"
               style={{
                 gridRow:
                   windowWidth < 768
@@ -429,15 +429,14 @@ export function GitHubProjects() {
                     : `${Math.floor(index / 3) + 2}`,
                 gridColumn: "1 / -1",
                 marginTop: "1.5rem",
-                backgroundColor: "#111827",
               }}>
               <div className="relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-6">
-                    <h3 className="text-xl font-semibold mb-4 text-white">
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
                       Repository Details
                     </h3>
-                    <ul className="space-y-4 text-slate-200">
+                    <ul className="space-y-4 text-gray-900 dark:text-slate-400">
                       <li>
                         <span className="font-semibold text-blue-300">
                           Created:
@@ -467,7 +466,7 @@ export function GitHubProjects() {
                         <span className="font-semibold text-blue-300">
                           Clone URL:
                         </span>{" "}
-                        <code className="bg-slate-800 px-3 py-1 rounded text-sm mt-1 block">
+                        <code className="bg-slate-800 px-3 py-1 rounded text-sm mt-1 block dark:text-white text-white">
                           {project.clone_url}
                         </code>
                       </li>
@@ -477,7 +476,7 @@ export function GitHubProjects() {
                     <h3 className="text-xl font-semibold mb-4 text-white">
                       Repository Activity
                     </h3>
-                    <ul className="space-y-4 text-slate-200">
+                    <ul className="space-y-4 text-gray-900 dark:text-slate-400">
                       <li>
                         <span className="font-semibold text-blue-300">
                           Contributors:
@@ -548,7 +547,7 @@ export function GitHubProjects() {
           )}
           {showVideo === project.id && project.demo_video && (
             <div
-              className="col-span-1 md:col-span-2 lg:col-span-3 bg-slate-950/95 backdrop-blur-sm border border-slate-700 rounded-lg p-4 sm:p-8 animate-slideDown shadow-xl relative mx-4 sm:mx-0"
+              className="col-span-1 md:col-span-2 lg:col-span-3 dark:bg-slate-900/95 bg-white/95 backdrop-blur-sm dark:border-slate-700 border-gray-200 rounded-lg p-4 sm:p-8 animate-slideDown shadow-xl relative mx-4 sm:mx-0"
               style={{
                 gridRow:
                   windowWidth < 768
@@ -556,7 +555,6 @@ export function GitHubProjects() {
                     : `${Math.floor(index / 3) + 3}`,
                 gridColumn: "1 / -1",
                 marginTop: "1.5rem",
-                backgroundColor: "#111827",
               }}>
               <div ref={videoRef} className="relative z-10 aspect-video">
                 {project.demo_video.type === "youtube" && (
@@ -573,7 +571,7 @@ export function GitHubProjects() {
                       src={`https://www.youtube.com/embed/${project.demo_video.url}?autoplay=0&rel=0&modestbranding=1`}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
-                      className="absolute inset-0 w-full h-full rounded-lg"
+                      className="absolute inset-0 w-full h-full rounded-lg dark:border-slate-700  border-gray-200"
                     />
                   </>
                 )}

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 // import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
+import DarkModeToggle from "../components/dark-mode-toggle";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -62,10 +63,11 @@ export default function RootLayout({
         <Analytics />
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange>
           {children}
+          <DarkModeToggle />
         </ThemeProvider>
       </body>
     </html>

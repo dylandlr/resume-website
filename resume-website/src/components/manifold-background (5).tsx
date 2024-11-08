@@ -1,13 +1,9 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { useTheme } from "next-themes";
 
 const ManifoldBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { theme, systemTheme } = useTheme();
-
-  const resolvedTheme = theme === "system" ? systemTheme : theme;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -16,14 +12,10 @@ const ManifoldBackground: React.FC = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Set canvas size to window size with DPI handling
+    // Set canvas size to window size
     const resizeCanvas = () => {
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      canvas.style.width = `${window.innerWidth}px`;
-      canvas.style.height = `${window.innerHeight}px`;
-      ctx.scale(dpr, dpr);
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     };
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
@@ -55,10 +47,7 @@ const ManifoldBackground: React.FC = () => {
         if (!ctx) return;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle =
-          resolvedTheme === "dark"
-            ? "rgba(248, 250, 252, 0.5)"
-            : "rgba(15, 23, 42, 0.5)";
+        ctx.fillStyle = "rgba(96, 165, 250, 0.5)";
         ctx.fill();
       }
     }
@@ -88,10 +77,9 @@ const ManifoldBackground: React.FC = () => {
             ctx.beginPath();
             ctx.moveTo(node.x, node.y);
             ctx.lineTo(otherNode.x, otherNode.y);
-            ctx.strokeStyle =
-              resolvedTheme === "dark"
-                ? `rgba(248, 250, 252, ${0.15 * (1 - distance / 150)})`
-                : `rgba(15, 23, 42, ${0.15 * (1 - distance / 150)})`;
+            ctx.strokeStyle = `rgba(96, 165, 250, ${
+              0.15 * (1 - distance / 150)
+            })`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -106,15 +94,12 @@ const ManifoldBackground: React.FC = () => {
     return () => {
       window.removeEventListener("resize", resizeCanvas);
     };
-  }, [resolvedTheme]);
+  }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full -z-10"
-      style={{
-        backgroundColor: resolvedTheme === "dark" ? "#0f172a" : "#f8fafc",
-      }}
+      className="fixed top-0 left-0 w-full h-full -z-10 bg-primary"
     />
   );
 };

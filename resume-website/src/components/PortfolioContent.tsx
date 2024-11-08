@@ -11,16 +11,16 @@ const PortfolioContent: React.FC = () => {
   };
 
   return (
-    <main className="relative z-10">
+    <main className="relative min-h-screen w-full overflow-hidden bg-transparent transition-colors duration-300">
       {/* Home Section */}
       <section
         id="home"
         className="min-h-screen flex items-center justify-center px-4">
-        <div className="text-center text-white w-full max-w-3xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4">
+        <div className="text-center w-full max-w-3xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 bg-clip-text text-transparent bg-gradient-to-r dark:bg-white bg-gray-900">
             Dylan M. De La Rosa
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">
+          <p className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6 dark:text-gray-200 text-gray-800">
             AI Researcher
           </p>
           <div className="flex gap-4 justify-center mb-6">
@@ -29,25 +29,25 @@ const PortfolioContent: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub Profile">
-              <Github className="w-8 h-8 hover:text-blue-400 transition-colors" />
+              <Github className="w-8 h-8 hover:text-blue-400 transition-colors dark:text-white text-gray-900" />
             </a>
             <a href="mailto:delarosadyl@gmail.com" aria-label="Email Contact">
-              <Mail className="w-8 h-8 hover:text-blue-400 transition-colors" />
+              <Mail className="w-8 h-8 hover:text-blue-400 transition-colors dark:text-white text-gray-900" />
             </a>
             <a href="/resume" className="w-8 h-8" aria-label="Resume">
-              <FileText className="w-8 h-8 hover:text-blue-400 transition-colors" />
+              <FileText className="w-8 h-8 hover:text-blue-400 transition-colors dark:text-white text-gray-900" />
             </a>
             <a
               href="https://www.linkedin.com/in/dylan-de-la-rosa-7617ab158/"
               aria-label="LinkedIn"
               target="_blank"
               rel="noopener noreferrer">
-              <Linkedin className="w-8 h-8 hover:text-blue-400 transition-colors" />
+              <Linkedin className="w-8 h-8 hover:text-blue-400 transition-colors dark:text-white text-gray-900" />
             </a>
           </div>
           <ChevronDown
             size={24}
-            className="mx-auto animate-bounce cursor-pointer"
+            className="mx-auto animate-bounce cursor-pointer dark:text-white text-gray-900"
             onClick={() => scrollToSection("projects")}
             aria-label="Scroll to Projects"
           />
@@ -57,16 +57,18 @@ const PortfolioContent: React.FC = () => {
       {/* About Section */}
       <section id="about" className="py-12 sm:py-20 px-4">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 sm:mb-8 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold dark:text-white text-gray-900 mb-6 sm:mb-8 text-center">
             About Me
           </h2>
-          <Card className="bg-slate-900 text-white border-slate-800">
+          <Card className="dark:bg-slate-900 bg-white dark:text-white text-gray-900 dark:border-slate-800 border-gray-200">
             <CardContent className="pt-6 space-y-6">
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-slate-700 pb-4">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center dark:border-slate-700 border-gray-200 pb-4">
                 <h3 className="text-xl font-semibold mb-2 sm:mb-0">
                   Computer Science, B.S.
                 </h3>
-                <p className="text-slate-400">Expected December 2024</p>
+                <p className="dark:text-slate-400 text-gray-500">
+                  Expected December 2024
+                </p>
               </div>
 
               <div className="space-y-4 text-base sm:text-lg">
@@ -90,11 +92,11 @@ const PortfolioContent: React.FC = () => {
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {/* AI & Development Column */}
-                  <div className="bg-slate-800/50 p-4 rounded-lg">
-                    <h5 className="font-semibold text-blue-300 mb-3">
+                  <div className="dark:bg-slate-800/50 bg-gray-100/50 p-4 rounded-lg">
+                    <h5 className="font-semibold text-blue-400 mb-3">
                       AI & Development
                     </h5>
-                    <ul className="space-y-2 text-slate-300 text-sm sm:text-base">
+                    <ul className="space-y-2 dark:text-slate-300 text-slate-700 text-sm sm:text-base">
                       <li className="flex items-center">
                         <span className="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
                         Artificial Intelligence
@@ -111,11 +113,11 @@ const PortfolioContent: React.FC = () => {
                   </div>
 
                   {/* Security & Systems Column */}
-                  <div className="bg-slate-800/50 p-4 rounded-lg">
-                    <h5 className="font-semibold text-blue-300 mb-3">
+                  <div className="dark:bg-slate-800/50 bg-gray-100/50 p-4 rounded-lg">
+                    <h5 className="font-semibold text-blue-400 mb-3">
                       Security & Systems
                     </h5>
-                    <ul className="space-y-2 text-slate-300 text-sm sm:text-base">
+                    <ul className="space-y-2 text-gray-900 dark:text-slate-400 text-sm sm:text-base">
                       <li className="flex items-center">
                         <span className="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
                         Cybersecurity
@@ -132,11 +134,11 @@ const PortfolioContent: React.FC = () => {
                   </div>
 
                   {/* Data & Cloud Column */}
-                  <div className="bg-slate-800/50 p-4 rounded-lg sm:col-span-2 lg:col-span-1">
-                    <h5 className="font-semibold text-blue-300 mb-3">
+                  <div className="dark:bg-slate-800/50 bg-gray-100/50 p-4 rounded-lg sm:col-span-2 lg:col-span-1">
+                    <h5 className="font-semibold text-blue-400  mb-3">
                       Data & Cloud
                     </h5>
-                    <ul className="space-y-2 text-slate-300 text-sm sm:text-base">
+                    <ul className="space-y-2 text-gray-900 dark:text-slate-400 text-sm sm:text-base">
                       <li className="flex items-center">
                         <span className="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
                         Cloud Computing
@@ -170,8 +172,8 @@ const PortfolioContent: React.FC = () => {
 
       {/* Footer Section */}
       <footer>
-        <div className="sticky bottom-0 right-0 flex justify-end">
-          <div className="bg-slate-900/90 backdrop-blur-sm border-t border-l border-slate-800 rounded-tl-xl px-3 sm:px-4 py-2 text-xs sm:text-sm text-slate-300 shadow-lg flex items-center gap-2 sm:gap-3 hover:bg-slate-900/95 transition-colors">
+        <div className="sticky bottom-0 left-0 flex">
+          <div className="dark:bg-slate-900/90 bg-white/90 backdrop-blur-sm dark:shadow-white/5 dark:border-slate-800 border-gray-200 dark:text-slate-300 text-gray-700 rounded-tl-xl px-3 sm:px-4 py-2 text-xs sm:text-sm shadow-lg flex items-center gap-2 sm:gap-3 dark:hover:bg-slate-900/95 hover:bg-gray-50/95 transition-colors">
             <span className="text-blue-400 font-medium">Built with</span>
             <div className="flex items-center gap-3">
               {/* Next.js */}
@@ -182,6 +184,7 @@ const PortfolioContent: React.FC = () => {
                 className="hover:opacity-80 transition-opacity"
                 title="Next.js">
                 <svg
+                  className="dark:fill-white fill-gray-900"
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
                   height="20"

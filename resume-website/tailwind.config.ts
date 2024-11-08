@@ -11,8 +11,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#ffffff", // Converted to white (#ffffff)
-        foreground: "#1b1f3a", // Dark blue (#1b1f3a)
+        background: {
+          DEFAULT: "hsl(var(--background))",
+          dark: "hsl(var(--background-dark))",
+        },
+        foreground: {
+          DEFAULT: "#0D1117",
+          dark: "#f8fafc",
+        },
       },
     },
     colors: {

@@ -3,6 +3,8 @@ import React, { useState, useEffect, useCallback } from "react";
 const NUM_STARS = 250; // Increased number of stars
 const ANIMATION_DURATION = 50000; // Slightly faster rotation
 
+import { useTheme } from "next-themes";
+
 interface Star {
   x: number;
   y: number;
@@ -25,6 +27,7 @@ interface Star {
 
 const StarField = () => {
   const [stars, setStars] = useState<Star[]>([]);
+  const { theme } = useTheme();
 
   const generateStars = useCallback(() => {
     return Array.from({ length: NUM_STARS }, () => ({
@@ -39,10 +42,16 @@ const StarField = () => {
       animationDelay: Math.random() * -ANIMATION_DURATION,
       color:
         Math.random() > 0.8
-          ? "#64B5F6"
+          ? theme === "dark"
+            ? "white"
+            : "dark"
           : Math.random() > 0.7
-          ? "#FF8A80"
-          : "white",
+          ? theme === "dark"
+            ? "white"
+            : "dark"
+          : theme === "dark"
+          ? "whit"
+          : "dark",
     }));
   }, []);
   useEffect(() => {
@@ -50,15 +59,28 @@ const StarField = () => {
   }, [generateStars]);
 
   return (
-    <div className="w-full h-96 bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 relative overflow-hidden rounded-lg shadow-xl">
+    <div
+      className={`w-full h-screen fixed top-0 left-0 -z-10 ${
+        theme === "dark"
+          ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
+          : "bg-gradient-to-br from-blue-50 via-white to-blue-50"
+      }`}>
       <svg
         className="w-full h-full absolute inset-0"
         viewBox="0 0 100 100"
         preserveAspectRatio="xMidYMid slice">
         <defs>
           <radialGradient id="starGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#1E1B4B" stopOpacity="0" />
+            <stop
+              offset="0%"
+              stopColor={theme === "dark" ? "#64B5F6" : "#2196F3"}
+              stopOpacity="0.3"
+            />
+            <stop
+              offset="100%"
+              stopColor={theme === "dark" ? "#1E1B4B" : "#1E1B4B"}
+              stopOpacity="0"
+            />
           </radialGradient>
 
           <filter id="glow">
