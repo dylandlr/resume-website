@@ -1,13 +1,23 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 
 const ManifoldBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme, systemTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  const resolvedTheme = theme === "system" ? systemTheme : theme;
+  // Wait for mount to avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const resolvedTheme = mounted
+    ? theme === "system"
+      ? systemTheme
+      : theme
+    : "dark";
 
   useEffect(() => {
     const canvas = canvasRef.current;

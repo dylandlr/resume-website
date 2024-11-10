@@ -329,9 +329,14 @@ export function GitHubProjects() {
       {projects.map((project, index) => (
         <React.Fragment key={project.id}>
           <Card
-            onClick={() =>
-              setExpandedId(expandedId === project.id ? null : project.id)
-            }
+            onClick={() => {
+              const newExpandedId =
+                expandedId === project.id ? null : project.id;
+              setExpandedId(newExpandedId);
+              if (!newExpandedId) {
+                setShowVideo(null); // Reset video state when closing the repo card
+              }
+            }}
             className={cn(
               "dark:bg-slate-900 bg-white dark:text-white text-gray-900 dark:border-slate-800 border-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800/95 transition-all duration-300 cursor-pointer relative overflow-hidden",
               "max-w-full",
