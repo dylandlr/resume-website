@@ -17,7 +17,7 @@ const config: Config = {
         },
         foreground: {
           DEFAULT: "#0D1117",
-          dark: "#f8fafc",
+          dark: "#f8fafc", // fix?
         },
       },
     },

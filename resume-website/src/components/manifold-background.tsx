@@ -123,7 +123,7 @@ const ManifoldBackground: React.FC = () => {
       ref={canvasRef}
       className="fixed inset-0 w-full h-full -z-10"
       style={{
-        backgroundColor: resolvedTheme === "dark" ? "#0f172a" : "#f8fafc",
+        backgroundColor: resolvedTheme === "dark" ? "#0D1117" : "#f8fafc",
       }}
     />
   );
